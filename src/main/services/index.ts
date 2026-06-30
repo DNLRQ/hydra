@@ -28,3 +28,5 @@ export * from "./notifications/local-notifications";
 export * from "./power-save-blocker";
 export * from "./native-addon";
 export * as emulators from "./emulators";
+export * from "./multiplayer";
+

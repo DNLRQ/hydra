@@ -21,6 +21,8 @@ import "./user";
 import "./user-preferences";
 import "./library/transfer-game-files";
 import "./emulators";
+import "./multiplayer";
+
 
 import { isPortableVersion } from "@main/helpers";
 
