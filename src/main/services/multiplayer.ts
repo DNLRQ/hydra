@@ -20,6 +20,18 @@ export class MultiplayerService {
   private static heartbeatInterval: NodeJS.Timeout | null = null;
   private static isVpnActive = false;
 
+  public static getActiveLobbyId(): string | null {
+    return this.activeLobbyId;
+  }
+
+  public static getActiveSubnet(): string | null {
+    return this.activeSubnet;
+  }
+
+  public static getActiveVirtualIp(): string | null {
+    return this.activeVirtualIp;
+  }
+
   private static getWgConfPath(): string {
     return path.join(app.getPath("temp"), "hydra-wg.conf");
   }
@@ -75,7 +87,7 @@ export class MultiplayerService {
             sudo.exec(
               command,
               { name: "WireGuard Installer" },
-              (sudoError, stdout, stderr) => {
+              (sudoError, _stdout, _stderr) => {
                 try { fs.unlinkSync(destPath); } catch {}
                 if (sudoError) {
                   logger.error("[VPN] WireGuard installation failed:", sudoError);
@@ -100,7 +112,7 @@ export class MultiplayerService {
         sudo.exec(
           command,
           { name: "WireGuard Installer" },
-          (sudoError, stdout, stderr) => {
+          (sudoError, _stdout, _stderr) => {
             if (sudoError) {
               logger.error("[VPN] Linux WireGuard installation failed:", sudoError);
               reject(sudoError);
